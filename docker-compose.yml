@@ -50,25 +50,25 @@ services:
       - --log
       - --api
       - --tracing=true
-      - --tracing.jaeger.localAgentHostPort=jaeger:6831
+      # - --tracing.jaeger.localAgentHostPort=jaeger:6831
       - --experimental.plugins.cloudflarewarp.modulename=github.com/BetterCorp/cloudflarewarp
       - --experimental.plugins.cloudflarewarp.version=v1.3.0
       - --experimental.plugins.staticresponse.modulename=github.com/jdel/staticresponse
       - --experimental.plugins.staticresponse.version=v0.0.1
     networks:
       - traefik-public
-  jaeger:
-    image: jaegertracing/all-in-one:latest
-    networks:
-      - traefik-public
-    environment:
-      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
-    deploy:
-      labels:
-        traefik.enable: "true"
-        traefik.http.routers.jaeger.rule: Host(`jaeger.twir.app`)
-        traefik.http.routers.jaeger.middlewares: admin-auth
-        traefik.http.services.jaeger.loadbalancer.server.port: 16686
+  # jaeger:
+  #   image: jaegertracing/all-in-one:latest
+  #   networks:
+  #     - traefik-public
+  #   environment:
+  #     COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+  #   deploy:
+  #     labels:
+  #       traefik.enable: "true"
+  #       traefik.http.routers.jaeger.rule: Host(`jaeger.twir.app`)
+  #       traefik.http.routers.jaeger.middlewares: admin-auth
+  #       traefik.http.services.jaeger.loadbalancer.server.port: 16686
 
 volumes:
   traefik-public-certificates:
