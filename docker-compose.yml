@@ -42,6 +42,8 @@ services:
       - --providers.docker.exposedbydefault=false
       - --providers.docker.swarmmode
       - --entrypoints.http.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=https
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
       - --entrypoints.https.address=:443
       - --certificatesresolvers.le.acme.email=${EMAIL?Variable not set}
       - --certificatesresolvers.le.acme.storage=/certificates/acme.json
