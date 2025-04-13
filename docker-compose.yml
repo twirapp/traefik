@@ -16,7 +16,7 @@ services:
                 - node.role == manager
         labels:
             - traefik.enable=true
-            - traefik.http.routers.traefik-public.rule=Host(`test-traefik.twir.app`)
+            - traefik.http.routers.traefik-public.rule=Host(`traefik.twir.app`)
             - traefik.http.routers.traefik-public.service=api@internal
             # - traefik.http.routers.traefik-public.middlewares=admin-auth
             - traefik.http.services.traefik-public.loadbalancer.server.port=8080
@@ -45,6 +45,7 @@ services:
         - --log
         - --api
         - --tracing=true
+        - --experimental.fastProxy
         # - --experimental.plugins.staticresponse.modulename=github.com/jdel/staticresponse
         # - --experimental.plugins.staticresponse.version=v0.0.1
     networks:
