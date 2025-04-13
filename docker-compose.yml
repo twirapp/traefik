@@ -45,6 +45,8 @@ services:
         - --log
         - --api
         - --tracing=true
+        - --metrics.otlp=true
+        - --metrics.prometheus=true
         - --experimental.fastProxy
         # - --experimental.plugins.staticresponse.modulename=github.com/jdel/staticresponse
         # - --experimental.plugins.staticresponse.version=v0.0.1
